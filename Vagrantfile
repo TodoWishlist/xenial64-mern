@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -84,22 +84,23 @@ Vagrant.configure(2) do |config|
   # SHELL
   config.vm.provision "shell", path: ".provision/increase_swap.sh", privileged: true
   config.vm.provision "shell", path: ".provision/vagrant.sh", privileged: false
-  config.vm.provision "shell", path: ".provision/mongodb.sh", privileged: false
 
-  # FILE
+  # Git
   config.vm.provision "file", source: ".provision/.gitconfig", destination: ".gitconfig"
+
+  # Mongo - Disable THP
+  config.vm.provision "file", source: ".provision/disable-transparent-hugepages.service", destination: "disable-transparent-hugepages.service"
+  config.vm.provision "shell", path: ".provision/disable-transparent-hugepages.init.sh", privileged: false
+  # Mongo
+  config.vm.provision "file", source: ".provision/mongo.service", destination: "mongo.service"
+  config.vm.provision "shell", path: ".provision/mongodb.sh", privileged: false
 
   # Enable XVFB
   config.vm.provision "file", source: ".provision/xvfb.service", destination: "xvfb.service"
   config.vm.provision "shell", path: ".provision/xvfb.init.sh", privileged: false
 
-  # Disable THP for Mongo
-  #config.vm.provision "file", source: ".provision/disable-transparent-hugepages", destination: "disable-transparent-hugepages"
-  #config.vm.provision "shell", path: ".provision/disable-transparent-hugepages.init.sh", privileged: false
-
-  
   # Some help to stupid npm
   config.vm.provision "file", source: ".provision/helpnpm", destination: "helpnpm"
   config.vm.provision "shell", path: ".provision/helpnpm.init.sh", privileged: false
-  
+
 end

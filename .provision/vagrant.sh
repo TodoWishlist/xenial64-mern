@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # This shell is running on vagrant
-# Requires: Ubuntu Trusty64 with 1G memory and 2 cpu cores
+# Requires: Ubuntu Xenial64 with 1G memory and 2 cpu cores
 
 # Parameters BEGIN
-VAGRANT_NODE_VERSION=node #define which node version to install (node: latest nodejs stable)
+VAGRANT_NODE_VERSION=v6 #define which node version to install (node: latest nodejs stable)
 # Parameters END
 
 echo ''
@@ -29,7 +29,6 @@ sudo add-apt-repository -y ppa:openjdk-r/ppa
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
-sudo apt-get -y autoremove
 
 # Install packages
 sudo apt-get -y install vim git ruby ntp
@@ -77,11 +76,6 @@ if [ -z "$(command -v bower)" ]; then
 else
   npm update -g bower
 fi
-if [ -z "$(command -v grunt)" ]; then
-  npm install -g grunt-cli
-else
-  npm update -g grunt-cli
-fi
 if [ -z "$(command -v gulp)" ]; then
   npm install -g gulp
 else
@@ -103,7 +97,8 @@ else
   npm update -g yo
 fi
 npm install -g generator-meanjs
-sudo gem update --system
+# Install Sass
+sudo gem update
 sudo gem install sass
 # Install Chrome (required by Mean.js E2E test)
 sudo apt-get install -y libxss1 libappindicator1 libindicator7 libpango1.0 fonts-liberation xdg-utils
@@ -113,3 +108,5 @@ sudo dpkg -i google-chrome*.deb
 sudo rm -rf google-chrome*.deb
 # Install Firefox (required by Mean.js)
 sudo apt-get install -y firefox
+
+sudo apt-get -y autoremove

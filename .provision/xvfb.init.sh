@@ -7,7 +7,7 @@ if ! [ -e /etc/systemd/system/xvfb.service ]; then
   sudo cp ~/xvfb.service /etc/systemd/system/
   sudo rm -rf ~/xvfb.service
   sudo chown root:root /etc/systemd/system/xvfb.service
-  sudo chmod 755 /etc/systemd/system/xvfb.service
+  sudo chmod 644 /etc/systemd/system/xvfb.service
   sudo dos2unix /etc/systemd/system/xvfb.service
   sudo systemctl enable /etc/systemd/system/xvfb.service
   echo '' | tee >> ~/.bashrc

@@ -2,14 +2,15 @@
 
 sudo apt-get install -y dos2unix
 # Disable THP
-if ! [ -e /etc/init.d/disable-transparent-hugepages ]; then
-  echo 'File /etc/init.d/disable-transparent-hugepages is generating...'
-  sudo cp ~/disable-transparent-hugepages /etc/init.d/
-  sudo rm -rf ~/disable-transparent-hugepages
-  sudo chown root:root /etc/init.d/disable-transparent-hugepages
-  sudo chmod 755 /etc/init.d/disable-transparent-hugepages
-  sudo dos2unix /etc/init.d/disable-transparent-hugepages
-  sudo update-rc.d disable-transparent-hugepages defaults
+if ! [ -e /etc/systemd/system/disable-transparent-hugepages.service ]; then
+  echo 'File /etc/systemd/system/disable-transparent-hugepages.service is generating...'
+  sudo cp ~/disable-transparent-hugepages.service /etc/systemd/system/
+  sudo rm -rf ~/disable-transparent-hugepages.service
+  sudo chown root:root /etc/systemd/system/disable-transparent-hugepages.service
+  sudo chmod 644 /etc/systemd/system/disable-transparent-hugepages.service
+  sudo dos2unix /etc/systemd/system/disable-transparent-hugepages.service
+  sudo systemctl enable /etc/systemd/system/disable-transparent-hugepages.service
 else
-  echo 'File /etc/init.d/disable-transparent-hugepages already exists.'
+  echo 'File /etc/systemd/system/disable-transparent-hugepages.service already exists.'
 fi
+sudo systemctl start disable-transparent-hugepages.service
