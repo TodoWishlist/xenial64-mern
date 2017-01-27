@@ -36,7 +36,7 @@ sudo apt-get -y install vim git ruby ntp
 sudo apt-get -y install build-essential chrpath libssl-dev libxft-dev \
                         fontconfig libfontconfig1 libfontconfig1 libfontconfig1-dev libfreetype6 libfreetype6-dev \
                         libkrb5-dev
-# Install OpenJRE 8 (required by mean.js)
+# Install OpenJRE 8
 sudo apt-get -y install openjdk-8-jre
 
 echo ''
@@ -71,42 +71,25 @@ echo '====                                  ===='
 echo '====                                  ===='
 echo '=========================================='
 # Instal Common Package
-if [ -z "$(command -v bower)" ]; then
-  npm install -g bower
-else
-  npm update -g bower
-fi
-if [ -z "$(command -v gulp)" ]; then
-  npm install -g gulp
-else
-  npm update -g gulp
-fi
+
 
 echo ''
 echo '=========================================='
 echo '====                                  ===='
 echo '====                                  ===='
-echo '====    Installing Mean.js    ===='
+echo '====    Installing MERN               ===='
 echo '====                                  ===='
 echo '====                                  ===='
 echo '=========================================='
-# Install Mean.js
-if [ -z "$(command -v yo)" ]; then
-  npm install -g yo
+# Install mern-cli
+if [ -z "$(command -v mern-cli)" ]; then
+  npm install -g mern-cli
 else
-  npm update -g yo
+  npm update -g mern-cli
 fi
-npm install -g generator-meanjs
 # Install Sass
 sudo gem update
 sudo gem install sass
-# Install Chrome (required by Mean.js E2E test)
-sudo apt-get install -y libxss1 libappindicator1 libindicator7 libpango1.0 fonts-liberation xdg-utils
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0x1397BC53640DB551
-sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome*.deb
-sudo rm -rf google-chrome*.deb
-# Install Firefox (required by Mean.js)
-sudo apt-get install -y firefox
 
+# Cleanup
 sudo apt-get -y autoremove

@@ -1,6 +1,6 @@
-Vagrant Box For Mean.js Project
+Vagrant Box For MERN Project
 =================
-This is an all-in-one vagrant box for developing mean.js projects.
+This is an all-in-one vagrant box for developing MERN projects.
 
 
 ## Read me first
@@ -15,11 +15,11 @@ Vagrant >= 1.7.4
 VirtualBox >= 5.0.10
 
 ## How to start
-1.  Download the vagrant box files from [Release Page](https://github.com/L1CH/xenial64-mean/releases) and Unzip it (**Recommend**)  
+1.  Download the vagrant box files from [Release Page](https://github.com/TodoWishlist/xenial64-mern/releases) and Unzip it (**Recommend**)  
     **OR**  
     Use git to obtain these files (**NOT Recommend**)  
     ```
-    git clone https://github.com/QiyuLi/xenial64-mean.git
+    git clone https://github.com/TodoWishlist/xenial64-mern.git
     cd xenial64-mean
     rm -rf .git
     ```
@@ -50,7 +50,7 @@ VirtualBox >= 5.0.10
     **For example:** (inside guest machine)  
     ```
     cd /vagrant
-    git clone https://github.com/meanjs/mean.git
+    git clone https://github.com/Hashnode/mern-starter.git
     cd mean
     helpnpm
     npm install
