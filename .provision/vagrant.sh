@@ -71,7 +71,12 @@ echo '====                                  ===='
 echo '====                                  ===='
 echo '=========================================='
 # Instal Common Package
-
+# Install yarn
+if [ -z "$(command -v yarn)" ]; then
+  npm install -g yarn
+else
+  npm update -g yarn
+fi
 
 echo ''
 echo '=========================================='
@@ -81,12 +86,6 @@ echo '====    Installing MERN               ===='
 echo '====                                  ===='
 echo '====                                  ===='
 echo '=========================================='
-# Install mern-cli
-if [ -z "$(command -v mern-cli)" ]; then
-  npm install -g mern-cli
-else
-  npm update -g mern-cli
-fi
 # Install Sass
 sudo gem update
 sudo gem install sass
